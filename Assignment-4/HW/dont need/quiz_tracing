@@ -1,0 +1,34 @@
+class Test3:
+  def __init__(self, z = None):
+    self.sum, self.y = 0, 1
+    if z != None:
+        z.sum = 2
+  def methodA(self, w):
+    x, y = 2, 3
+    msg = [5]
+    msg[0] = w[0] + x
+    myTest = Test3()
+    myTest.sum = myTest.sum + myTest.y
+    y = self.y + msg[0]
+    self.y = self.y + self.methodB(msg, msg[0], myTest)
+    msg = myTest
+    x = self.y + msg.sum
+    self.sum = x + y + msg.y
+    print(x, y, self.sum)
+  def methodB(self, *mg):
+    mg2, mg1, mg3 = mg
+    x = mg3.y
+    self.y = self.y + mg2[0]
+    x = x + 6 + mg1
+    mg2[0] = self.y + mg3.sum
+    self.sum = self.sum + mg2[0] + self.y
+    mg3.y = mg3.sum + mg1
+    print(x, self.y, self.sum)
+    return mg3.y
+
+t1 = Test3()
+t2 = Test3(t1)
+list1 = [5]
+t1.methodA(list1)
+print(t2.methodB(list1, 12, t2))
+t1.methodA([3])
